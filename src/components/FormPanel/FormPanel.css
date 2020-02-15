@@ -1,0 +1,20 @@
+.form__input {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  color: black;
+  height: 50px;
+  font-size: 1.3em;
+  font-weight: 500;
+}
+.form__btn {
+  background-color: tomato;
+  color: white;
+  font-weight: 500;
+  padding-left: 30px;
+  font-size: 23px;
+  padding-right: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.form__btn:hover {
+  background-color: rgb(175, 58, 37);
+  color: white;
+}

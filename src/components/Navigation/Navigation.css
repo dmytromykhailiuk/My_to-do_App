@@ -1,0 +1,26 @@
+.nav {
+  width: 49%;
+  border-radius: 5px;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.nav__item {
+  padding-top: 13px;
+  text-align: center;
+  width: 33.3%;
+  cursor: pointer;
+}
+.nav__item:hover {
+  background-color: rgb(2, 94, 94);
+}
+.nav__item.active {
+  background-color: rgb(2, 80, 80);
+}
+.item__first {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.item__last {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
