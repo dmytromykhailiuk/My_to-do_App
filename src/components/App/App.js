@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-
+import HelpingTools from '../HelpingTools';
 import ToDoList from "../ToDOList";
 import FormPanel from "../FormPanel";
-import SearchPanel from "../SearchPanel";
-import StatusPanel from "../StatusPanel";
-import Navigation from "../Navigation";
-
-
 
 export default class App extends Component {
   state = {
@@ -36,7 +31,7 @@ export default class App extends Component {
       });
     }
   }
-  OnImportant = (index) => {
+  onImportant = (index) => {
     const todos = this.state.todos.slice();
     const changedItem = {...todos[index]};
     if (!changedItem.done) {
@@ -48,7 +43,7 @@ export default class App extends Component {
       });
     }
   }
-  OnDone = (index) => {
+  onDone = (index) => {
     const todos = this.state.todos.slice();
     const changedItem = {...todos[index]};
     changedItem.done = !changedItem.done;
@@ -59,7 +54,7 @@ export default class App extends Component {
       ]};
     });
   }
-  OnDelete = (index) => {
+  onDelete = (index) => {
     const todos = this.state.todos.slice();
     this.setState(() => {
       return { 
@@ -85,38 +80,31 @@ export default class App extends Component {
     const searchFilter = todos.filter(el => el.text.toUpperCase()
       .indexOf(serchVal.toUpperCase()) > -1);
     const renderList = this.filterTodos(searchFilter, navItems);
+    const tools = todos.length === 0 ? null : (
+      <HelpingTools 
+        todos={todos} 
+        serchVal={serchVal} 
+        navItems={navItems} 
+        onSecrchChange={this.onSecrchChange} 
+        onChangeNavItem={this.onChangeNavItem}
+      />
+    );
     localStorage.setItem('currentId', this.state.currentId);
     localStorage.setItem('todos', JSON.stringify(todos));
     return (
       <div className='app d-flex justify-content-center'>
         <div className='wraper'>
           <h1 className='header__title text-center mb-5'>My to-do App</h1>
-          { todos.length === 0 ? null : (
-            <header className='header'>
-              <div className='header__statys-panel text-right'>
-                <StatusPanel items={todos}/>
-              </div>
-              <div className='header__wrap d-flex justify-content-between'>
-                <SearchPanel 
-                  onSecrchChange={this.onSecrchChange}
-                  inputVal={serchVal}
-                />
-                <Navigation
-                  onChangeNavItem={this.onChangeNavItem}
-                  navItems={navItems}
-                />
-              </div>
-            </header>
-          )}
+          { tools }
           <main className='main'>
             <ToDoList 
               items={renderList} 
-              OnImportant={this.OnImportant}
-              OnDone={this.OnDone}
-              OnDelete={this.OnDelete}
+              onImportant={this.onImportant}
+              onDone={this.onDone}
+              onDelete={this.onDelete}
             />
             <div className='main__form'>
-              <FormPanel  addNewToDo={this.addNewToDo}/>
+              <FormPanel  addNewToDo={ this.addNewToDo }/>
             </div>
           </main>
         </div>

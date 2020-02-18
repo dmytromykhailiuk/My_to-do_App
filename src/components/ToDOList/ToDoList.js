@@ -2,7 +2,7 @@ import React from 'react';
 import './ToDoList.css';
 import ToDoItem from '../ToDoItem'
 
-const ToDoList = ({items, OnImportant, OnDone, OnDelete}) => {
+const ToDoList = ({items, onImportant, onDone, onDelete}) => {
   return (
     <ul className="todolist list-group mt-4">
       {items.map((item, id) => {
@@ -10,9 +10,9 @@ const ToDoList = ({items, OnImportant, OnDone, OnDelete}) => {
           <ToDoItem 
             item={item} 
             key={item.id}
-            OnImportant={() => OnImportant(id)}
-            OnDone={() => OnDone(id)}
-            OnDelete={() => OnDelete(id)}
+            onImportant={() => onImportant(id)}
+            onDone={() => onDone(id)}
+            onDelete={() => onDelete(id)}
           />
         );
       })}
